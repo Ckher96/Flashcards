@@ -1,11 +1,5 @@
-import React, { useEffect, useState } from "react";
-import {
-  useHistory,
-  useRouteMatch,
-  useParams,
-  Switch,
-  Route,
-} from "react-router-dom";
+import React, { useEffect, useState} from "react";
+import { useHistory, useRouteMatch, useParams } from "react-router-dom";
 import {
   createDeck,
   updateDeck,
@@ -15,11 +9,11 @@ import {
   createCard,
 } from "../../utils/api";
 
-function CreateForm({}) {
-  const [form, setForm] = useState({});
+function CreateForm() {
   const { path } = useRouteMatch();
   const history = useHistory();
   const { deckId, cardId } = useParams();
+  const [form, setForm] = useState({});
 
   const edittingCard = path === "/decks/:deckId/cards/:cardId/edit";
   const edittingDeck = path === "/decks/:deckId/edit";
@@ -39,7 +33,7 @@ function CreateForm({}) {
     }
 
     getDeck();
-  }, [path]);
+  }, [deckId, cardId, edittingCard, edittingDeck]);
 
   function changeHandle(event) {
     setForm({ ...form, [event.target.id]: event.target.value });
@@ -89,7 +83,7 @@ function CreateForm({}) {
             id="name"
             required
             onChange={changeHandle}
-            value={form.name}
+            value={form?.name}
           />
         </div>
 
@@ -102,7 +96,7 @@ function CreateForm({}) {
             id="description"
             required
             onChange={changeHandle}
-            value={form.description}
+            value={form?.description}
           />
         </div>
         <div className="bg-secondary">
@@ -127,7 +121,7 @@ function CreateForm({}) {
             id="front"
             required
             onChange={changeHandle}
-            value={form.front}
+            value={form?.front}
           />
         </div>
 
@@ -140,7 +134,7 @@ function CreateForm({}) {
             id="back"
             required
             onChange={changeHandle}
-            value={form.back}
+            value={form?.back}
           />
         </div>
         <div className="bg-secondary">

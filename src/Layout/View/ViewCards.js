@@ -23,7 +23,7 @@ function ViewCards({ cards }) {
 
   const viewCards = cards?.map(({ front, back, id }, index, array) => {
     return (
-      <div className="border border-dark rounded-lg m-2 text-center">
+      <div key={index} className="border border-dark rounded-lg m-2 text-center">
         <h5 className="bg-secondary text-white p-2">{`Card ${index + 1} of ${
           array.length
         }`}</h5>

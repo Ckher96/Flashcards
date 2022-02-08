@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { Route, Switch, useParams, useRouteMatch } from "react-router-dom";
-import { readDeck } from "../../utils/api";
+import {
+  readDeck,
+} from "../../utils/api";
 import ViewDetails from "./ViewDetails";
 import ViewNav from "./ViewNav";
 import ViewCards from "./ViewCards";
@@ -9,17 +11,18 @@ import CreateNav from "../Create/CreateNav";
 
 function View() {
   const [studyDeck, setStudyDeck] = useState({});
-  const deckNum = useParams().deckId;
+  const {deckId} = useParams()
   const { path } = useRouteMatch();
 
   useEffect(() => {
     async function getDeck() {
-      const newDeck = await readDeck(deckNum);
+      const newDeck = await readDeck(deckId);
       setStudyDeck(newDeck);
     }
 
     getDeck();
-  }, [path]);
+  }, [deckId]);
+
 
   return (
     <>
@@ -36,7 +39,7 @@ function View() {
           <CreateNav deckName={studyDeck?.name} />
           <div className="text-center border border-dark rounded-lg">
             <h2 className="bg-secondary p-3 text-white">Edit Deck</h2>
-            <CreateForm deck={studyDeck ? studyDeck : {}} />
+            <CreateForm />
           </div>
         </Route>
         <Route path="/decks/:deckId/cards/:cardId/edit">
@@ -53,6 +56,13 @@ function View() {
             <CreateForm />
           </div>
         </Route>
+        <Route path="/decks/new">
+            <CreateNav />
+            <div className="text-center border border-dark rounded-lg">
+              <h2 className="bg-secondary p-3 text-white">Create Deck</h2>
+              <CreateForm />
+            </div>
+          </Route>
       </Switch>
     </>
   );

@@ -16,7 +16,7 @@ function Study() {
 
     getDeck();
   }, [deckNum]);
-  console.log(studyDeck?.cards)
+
   return (
     <>
       <StudyNav deckName={studyDeck?.name} deckId={studyDeck?.id} />

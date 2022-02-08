@@ -1,20 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { useHistory } from "react-router-dom";
 import { deleteDeck } from "../../utils/api/index";
 import { listDecks } from "../../utils/api/index";
 
-function Decks() {
+function Decks({decks, setDecks}) {
   const history = useHistory();
-  const [decks, setDecks] = useState([]);
-
-  useEffect(() => {
-    async function getDecks() {
-      const decksList = await listDecks();
-      setDecks(decksList);
-    }
-
-    getDecks();
-  }, []);
 
   function viewHandler(deckId) {
     history.push(`/decks/${deckId}`);
@@ -35,11 +25,11 @@ function Decks() {
     }
   }
 
-  const listOfDecks = decks.map(({ id, name, description, cards }) => {
+  const listOfDecks = decks.map(({ id, name, description, cards }, index) => {
     return (
       <>
         <div
-          key={id}
+          key={index}
           className="border border-dark rounded-lg text-center my-3"
         >
           <h2 className="bg-secondary text-white border-bottom border-dark">

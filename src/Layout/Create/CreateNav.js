@@ -11,7 +11,7 @@ function CreateNav({deckName = '', cards = []}) {
     let cardNum = 0
 
     cards?.forEach((card, index) => {
-        if (card.id == cardId) {
+        if (card.id === cardId) {
             cardNum = index
         }
     })

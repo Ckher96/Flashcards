@@ -28,43 +28,49 @@ function Cards({ cards, deckName }) {
   }
 
   function nextHandle() {
-      setFlip(false);
-      setCardNum(cardNum + 1);
-    }
-  
-  const flashCards = cards?.filter((card, index) => cardNum === index).map(({ front, back }) => {
-    return (
-      <div>
-        <div
-          className={`${classNames({
-          })} border border-dark rounded-lg mt-3 text-center`}
-        >
-          <h4 className="p-3 bg-secondary text-white">{`Card ${cardNum + 1} of ${
-            cards.length
-          }`}</h4>
-          <p className="m-4">{flip ? back : front}</p>
-          <div className="p-2 bg-secondary text-white">
-            <button onClick={flipHandle} className="btn btn-info mx-2">
-              Flip
-            </button>
-            {flip ? (
-              <button
-                onClick={cardNum + 1 === cards.length ? endHandle : nextHandle}
-                className="btn btn-success mx-2"
-              >
-                Next
+    setFlip(false);
+    setCardNum(cardNum + 1);
+  }
+
+  const flashCards = cards
+    ?.filter((card, index) => cardNum === index)
+    .map(({ front, back }, index) => {
+      return (
+        <div>
+          <div 
+            key={index}
+            className={`${classNames(
+              {}
+            )} border border-dark rounded-lg mt-3 text-center`}
+          >
+            <h4 className="p-3 bg-secondary text-white">{`Card ${
+              cardNum + 1
+            } of ${cards.length}`}</h4>
+            <p className="m-4">{flip ? back : front}</p>
+            <div className="p-2 bg-secondary text-white">
+              <button onClick={flipHandle} className="btn btn-info mx-2">
+                Flip
               </button>
-            ) : (
-              ""
-            )}
+              {flip ? (
+                <button
+                  onClick={
+                    cardNum + 1 === cards.length ? endHandle : nextHandle
+                  }
+                  className="btn btn-success mx-2"
+                >
+                  Next
+                </button>
+              ) : (
+                ""
+              )}
+            </div>
           </div>
         </div>
-      </div>
-    );
-  });
+      );
+    });
 
-  console.log(cards)
 
+    
   if (cards?.length < 3) {
     return (
       <div>
