@@ -10,7 +10,11 @@ import CreateForm from "../Create/CreateForm";
 import CreateNav from "../Create/CreateNav";
 
 function View() {
-  const [studyDeck, setStudyDeck] = useState({});
+  const [studyDeck, setStudyDeck] = useState({
+    "id": '',
+    "name": "",
+    "description": ""
+  });
   const {deckId} = useParams()
   const { path } = useRouteMatch();
 

@@ -5,7 +5,11 @@ import StudyNav from "./StudyNav";
 import Cards from "./Cards";
 
 function Study() {
-  const [studyDeck, setStudyDeck] = useState({});
+  const [studyDeck, setStudyDeck] = useState({
+    "id": '',
+    "name": "",
+    "description": ""
+  });
   const deckNum = useParams().deckId;
 
   useEffect(() => {

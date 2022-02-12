@@ -13,7 +13,7 @@ function CreateForm() {
   const { path } = useRouteMatch();
   const history = useHistory();
   const { deckId, cardId } = useParams();
-  const [form, setForm] = useState({});
+  const [form, setForm] = useState({name: '', description: '', front: '', back: ''});
 
   const edittingCard = path === "/decks/:deckId/cards/:cardId/edit";
   const edittingDeck = path === "/decks/:deckId/edit";

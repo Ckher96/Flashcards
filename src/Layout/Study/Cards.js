@@ -36,41 +36,35 @@ function Cards({ cards, deckName }) {
     ?.filter((card, index) => cardNum === index)
     .map(({ front, back }, index) => {
       return (
-        <div>
-          <div 
-            key={index}
-            className={`${classNames(
-              {}
-            )} border border-dark rounded-lg mt-3 text-center`}
-          >
-            <h4 className="p-3 bg-secondary text-white">{`Card ${
-              cardNum + 1
-            } of ${cards.length}`}</h4>
-            <p className="m-4">{flip ? back : front}</p>
-            <div className="p-2 bg-secondary text-white">
-              <button onClick={flipHandle} className="btn btn-info mx-2">
-                Flip
+        <div
+          key={index}
+          className={`${classNames(
+            {}
+          )} border border-dark rounded-lg mt-3 text-center`}
+        >
+          <h4 className="p-3 bg-secondary text-white">{`Card ${
+            cardNum + 1
+          } of ${cards.length}`}</h4>
+          <p className="m-4">{flip ? back : front}</p>
+          <div className="p-2 bg-secondary text-white">
+            <button onClick={flipHandle} className="btn btn-info mx-2">
+              Flip
+            </button>
+            {flip ? (
+              <button
+                onClick={cardNum + 1 === cards.length ? endHandle : nextHandle}
+                className="btn btn-success mx-2"
+              >
+                Next
               </button>
-              {flip ? (
-                <button
-                  onClick={
-                    cardNum + 1 === cards.length ? endHandle : nextHandle
-                  }
-                  className="btn btn-success mx-2"
-                >
-                  Next
-                </button>
-              ) : (
-                ""
-              )}
-            </div>
+            ) : (
+              ""
+            )}
           </div>
         </div>
       );
     });
 
-
-    
   if (cards?.length < 3) {
     return (
       <div>

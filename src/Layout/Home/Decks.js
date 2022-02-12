@@ -3,7 +3,7 @@ import { useHistory } from "react-router-dom";
 import { deleteDeck } from "../../utils/api/index";
 import { listDecks } from "../../utils/api/index";
 
-function Decks({decks, setDecks}) {
+function Decks({ decks, setDecks }) {
   const history = useHistory();
 
   function viewHandler(deckId) {
@@ -27,38 +27,33 @@ function Decks({decks, setDecks}) {
 
   const listOfDecks = decks.map(({ id, name, description, cards }, index) => {
     return (
-      <>
-        <div
-          key={index}
-          className="border border-dark rounded-lg text-center my-3"
-        >
-          <h2 className="bg-secondary text-white border-bottom border-dark">
-            {name}
-          </h2>
-          <p className="m-4">{description}</p>
-          <h4>{`${cards.length} cards`}</h4>
-          <div className="d-flex bg-secondary text-white border-top border-dark">
-            <button
-              onClick={() => viewHandler(id)}
-              className="btn btn-info m-2"
-            >
-              View
-            </button>
-            <button
-              onClick={() => studyHandler(id)}
-              className="btn btn-success m-2 mr-auto"
-            >
-              Study
-            </button>
-            <button
-              onClick={() => deleteHandler(id)}
-              className="btn btn-danger m-2"
-            >
-              Delete
-            </button>
-          </div>
+      <div
+        key={index}
+        className="border border-dark rounded-lg text-center my-3"
+      >
+        <h2 className="bg-secondary text-white border-bottom border-dark">
+          {name}
+        </h2>
+        <p className="m-4">{description}</p>
+        <h4>{`${cards.length} cards`}</h4>
+        <div className="d-flex bg-secondary text-white border-top border-dark">
+          <button onClick={() => viewHandler(id)} className="btn btn-info m-2">
+            View
+          </button>
+          <button
+            onClick={() => studyHandler(id)}
+            className="btn btn-success m-2 mr-auto"
+          >
+            Study
+          </button>
+          <button
+            onClick={() => deleteHandler(id)}
+            className="btn btn-danger m-2"
+          >
+            Delete
+          </button>
         </div>
-      </>
+      </div>
     );
   });
 
